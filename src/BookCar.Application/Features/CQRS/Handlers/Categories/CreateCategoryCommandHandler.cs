@@ -3,8 +3,6 @@ using BookCar.Application.Interfaces.Repositories;
 using BookCar.Domain.Entities;
 
 namespace BookCar.Application.Features.CQRS.Handlers.Categories;
-
-
 public class CreateCategoryCommandHandler
 {
     private readonly IUnitOfWork _unitOfWork;

@@ -8,7 +8,7 @@ public interface IContactRepository
 {
     Task<IEnumerable<Contact>> GetAllAsync(bool trackChanges);
     Task<Contact> GetOneByIdAsync(int id, bool trackChanges);
-    void Create(Contact banner);
-    void Update(Contact banner);
+    void Create(Contact contact);
+    void Update(Contact contact);
     Task RemoveByIdAsync(int id);
 }

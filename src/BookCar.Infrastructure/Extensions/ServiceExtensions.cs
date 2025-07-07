@@ -19,6 +19,10 @@ public static class ServiceExtensions
     {
         services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
         services.AddScoped<IAboutRepository, AboutRepository>();
+        services.AddScoped<IBannerRepository, BannerRepository>();
+        services.AddScoped<IBrandRepository, BrandRepository>();
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<IContactRepository, ContactRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
     }
 }

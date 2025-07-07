@@ -14,7 +14,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.ConfigureDbContext(builder.Configuration);
 builder.Services.ConfigureRepository();
-builder.Services.ConfigureApplicationServices();
+builder.Services.AddApplication();
 
 
 var app = builder.Build();

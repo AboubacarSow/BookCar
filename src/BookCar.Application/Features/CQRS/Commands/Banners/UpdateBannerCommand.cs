@@ -7,5 +7,4 @@ public class UpdateBannerCommand
     public string Description { get; set; }
     public string VideoDescription { get; set; }
     public string VideoUrl { get; set; }
-    // Additional properties can be added as needed
 }

@@ -3,10 +3,10 @@ using BookCar.Application.Interfaces.Repositories;
 
 namespace BookCar.Application.Features.CQRS.Handlers.Categories;
 
-public class GetCategoyQueryHandler
+public class GetCategoryQueryHandler
 {
     private readonly IUnitOfWork _unitOfWork;
-    public GetCategoyQueryHandler(IUnitOfWork unitOfWork)
+    public GetCategoryQueryHandler(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
     }

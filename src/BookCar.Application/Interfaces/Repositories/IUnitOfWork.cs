@@ -7,5 +7,6 @@ public interface IUnitOfWork
     IBannerRepository Banner { get; }
     IBrandRepository Brand { get; }
     ICategoryRepository Category { get; }
+    IContactRepository Contact { get; }
     Task SaveChangesAsync();
 }
