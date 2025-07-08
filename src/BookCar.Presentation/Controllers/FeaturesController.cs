@@ -1,15 +1,11 @@
-﻿using BookCar.Application.Features.Mediator.Queries.Features;
+﻿using BookCar.Application.Features.Mediator.Commands.Features;
+using BookCar.Application.Features.Mediator.Queries.Features;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookCar.Presentation.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/features")]
 [ApiController]
 public class FeaturesController : ControllerBase
 {
