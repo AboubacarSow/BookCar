@@ -1,0 +1,51 @@
+﻿using BookCar.Application.Features.Mediator.Queries.Features;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BookCar.Presentation.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class FeaturesController : ControllerBase
+{
+    private readonly IMediator _mediator;
+    public FeaturesController(IMediator mediator)
+    {
+        _mediator = mediator;
+    }
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        var values = await _mediator.Send(new GetFeatureQuery());
+        return Ok(values);
+    }
+    [HttpGet("{id:int}")]
+    public async Task<IActionResult> Get(int id)
+    {
+        var value = await _mediator.Send(new GetFeatureByIdQuery(id));
+        return Ok(value);
+    }
+    [HttpPost]
+    public async Task<IActionResult> CreateFeature(CreateFeatureCommand command)
+    {
+        await _mediator.Send(command);
+        return Ok("Özellik başarıyla eklendi");
+    }
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> RemoveFeature(int id)
+    {
+        await _mediator.Send(new RemoveFeatureCommand(id));
+        return Ok("Özellik başarıyla silindi");
+    }
+    [HttpPut]
+    public async Task<IActionResult> UpdateFeature(UpdateFeatureCommand command)
+    {
+        await _mediator.Send(command);
+        return Ok("Özellik başarıyla güncellendi");
+    }
+}

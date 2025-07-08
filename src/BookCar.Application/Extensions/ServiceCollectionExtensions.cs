@@ -3,6 +3,7 @@
 using BookCar.Application.Features.CQRS.Handlers.Abouts;
 using BookCar.Application.Features.CQRS.Handlers.Banners;
 using BookCar.Application.Features.CQRS.Handlers.Brands;
+using BookCar.Application.Features.CQRS.Handlers.Cars;
 using BookCar.Application.Features.CQRS.Handlers.Categories;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -40,6 +41,14 @@ public static class ServiceCollectionExtensions
         services.AddScoped<UpdateCategoryCommandHandler>();
         services.AddScoped<RemoveCategoryCommandHandler>();
 
+        // Car Handlers Registration
+        services.AddScoped<GetCarQueryHandler>();
+        services.AddScoped<GetCarByIdQueryHandler>();
+        services.AddScoped<GetCarWithBrandQueryHandler>();
+        services.AddScoped<CreateCarCommandHandler>();
+        services.AddScoped<UpdateCarCommandHandler>();
+        services.AddScoped<RemoveCarCommandHandler>();
 
+        services.AddMediatR(config => config.RegisterServicesFromAssembly(typeof(AssemblyReference).Assembly));
     }
 }

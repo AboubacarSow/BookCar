@@ -4,16 +4,19 @@ namespace BookCar.Infrastructure.Data;
 
 public class UnitOfWork : IUnitOfWork
 {
-    private readonly IAboutRepository _aboutRepository;
     private readonly BookCarDbContext _context;
+    private readonly IAboutRepository _aboutRepository;
     private readonly IBannerRepository _bannerRepository;
     private readonly IBrandRepository _brandRepository;
     private readonly ICategoryRepository _categoryRepository;
     private readonly IContactRepository _contactRepository;
+    private readonly ICarRepository _carRepository;
+    private readonly IFeatureRepository _featureRepository;
 
     public UnitOfWork(IAboutRepository aboutRepository, BookCarDbContext context,
-                      IBannerRepository bannerRepository, IBrandRepository brandRepository,
-                      ICategoryRepository categoryRepository, IContactRepository contactRepository)
+       IBannerRepository bannerRepository, IBrandRepository brandRepository,
+       ICategoryRepository categoryRepository, IContactRepository contactRepository,
+       ICarRepository carRepository, IFeatureRepository featureRepository)
     {
         _aboutRepository = aboutRepository;
         _context = context;
@@ -21,6 +24,8 @@ public class UnitOfWork : IUnitOfWork
         _brandRepository = brandRepository;
         _categoryRepository = categoryRepository;
         _contactRepository = contactRepository;
+        _carRepository = carRepository;
+        _featureRepository = featureRepository;
     }
 
     public IAboutRepository About => _aboutRepository;
@@ -28,6 +33,8 @@ public class UnitOfWork : IUnitOfWork
     public IBrandRepository Brand => _brandRepository;
     public ICategoryRepository Category => _categoryRepository;
     public IContactRepository Contact => _contactRepository;
+    public ICarRepository Car => _carRepository;
+    public IFeatureRepository Feature => _featureRepository;
 
     public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
     

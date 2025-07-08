@@ -8,5 +8,8 @@ public interface IUnitOfWork
     IBrandRepository Brand { get; }
     ICategoryRepository Category { get; }
     IContactRepository Contact { get; }
+    ICarRepository Car { get; }
+    IFeatureRepository Feature { get; }
+
     Task SaveChangesAsync();
 }
