@@ -12,11 +12,12 @@ public class UnitOfWork : IUnitOfWork
     private readonly IContactRepository _contactRepository;
     private readonly ICarRepository _carRepository;
     private readonly IFeatureRepository _featureRepository;
+    private readonly IFooterAddressRepository _footerAddressRepository;
 
     public UnitOfWork(IAboutRepository aboutRepository, BookCarDbContext context,
        IBannerRepository bannerRepository, IBrandRepository brandRepository,
        ICategoryRepository categoryRepository, IContactRepository contactRepository,
-       ICarRepository carRepository, IFeatureRepository featureRepository)
+       ICarRepository carRepository, IFeatureRepository featureRepository, IFooterAddressRepository footerAddressRepository)
     {
         _aboutRepository = aboutRepository;
         _context = context;
@@ -26,6 +27,7 @@ public class UnitOfWork : IUnitOfWork
         _contactRepository = contactRepository;
         _carRepository = carRepository;
         _featureRepository = featureRepository;
+        _footerAddressRepository = footerAddressRepository;
     }
 
     public IAboutRepository About => _aboutRepository;
@@ -35,6 +37,7 @@ public class UnitOfWork : IUnitOfWork
     public IContactRepository Contact => _contactRepository;
     public ICarRepository Car => _carRepository;
     public IFeatureRepository Feature => _featureRepository;
+    public IFooterAddressRepository FooterAddress => _footerAddressRepository;
 
     public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
     

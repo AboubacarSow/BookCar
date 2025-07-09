@@ -27,19 +27,19 @@ public class FeaturesController : ControllerBase
         return Ok(value);
     }
     [HttpPost]
-    public async Task<IActionResult> CreateFeature(CreateFeatureCommand command)
+    public async Task<IActionResult> Create(CreateFeatureCommand command)
     {
         await _mediator.Send(command);
         return Ok("Özellik başarıyla eklendi");
     }
     [HttpDelete("{id}")]
-    public async Task<IActionResult> RemoveFeature(int id)
+    public async Task<IActionResult> Remove(int id)
     {
         await _mediator.Send(new RemoveFeatureCommand(id));
         return Ok("Özellik başarıyla silindi");
     }
     [HttpPut]
-    public async Task<IActionResult> UpdateFeature(UpdateFeatureCommand command)
+    public async Task<IActionResult> Update(UpdateFeatureCommand command)
     {
         await _mediator.Send(command);
         return Ok("Özellik başarıyla güncellendi");

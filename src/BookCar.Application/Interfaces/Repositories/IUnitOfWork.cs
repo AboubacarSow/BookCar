@@ -10,6 +10,11 @@ public interface IUnitOfWork
     IContactRepository Contact { get; }
     ICarRepository Car { get; }
     IFeatureRepository Feature { get; }
+    IFooterAddressRepository FooterAddress { get; }
+    ILocationRepository Location { get; }
+    IServiceRepository Service { get; }
+    IPricingRepository Pricing { get; }
+    ISocialMediaRepository SocialMedia { get; }
 
     Task SaveChangesAsync();
 }

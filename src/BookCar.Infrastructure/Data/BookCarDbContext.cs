@@ -30,6 +30,7 @@ public class BookCarDbContext : DbContext
     public DbSet<Contact> Contacts { get; set; }
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Feature> Features { get; set; }
+    public DbSet<FooterAddress> FooterAddresses { get; set; }
     public DbSet<Location> Locations { get; set; }
     public DbSet<Pricing> Pricings { get; set; }
     public DbSet<RentACar> RentACars { get; set; }

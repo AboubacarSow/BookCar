@@ -25,6 +25,11 @@ public static class ServiceExtensions
         services.AddScoped<IContactRepository, ContactRepository>();
         services.AddScoped<ICarRepository, CarRepository>();
         services.AddScoped<IFeatureRepository, FeatureRepository>();
+        services.AddScoped<IFooterAddressRepository, FooterAddressRepository>();
+        services.AddScoped<ILocationRepository, LocationRepository>();
+        services.AddScoped<IServiceRepository, ServiceRepository>();
+        services.AddScoped<IPricingRepository, PricingRepository>();
+        services.AddScoped<ISocialMediaRepository, SocialMediaRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
     }
 }

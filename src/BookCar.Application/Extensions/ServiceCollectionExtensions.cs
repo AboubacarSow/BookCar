@@ -49,6 +49,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped<UpdateCarCommandHandler>();
         services.AddScoped<RemoveCarCommandHandler>();
 
+        
+
         services.AddMediatR(config => config.RegisterServicesFromAssembly(typeof(AssemblyReference).Assembly));
     }
 }
