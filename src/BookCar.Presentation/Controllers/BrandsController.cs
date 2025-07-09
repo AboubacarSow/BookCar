@@ -52,8 +52,8 @@ public class BrandsController:ControllerBase
         return Ok(new { StatusCode = 200, message = $"Id'si olan: {command.Id} Brand öğesi başarıyla güncellendi", Banner = command });
 
     }
-    [HttpDelete("")]
-    public async Task<IActionResult> Delete([FromQuery] int id)
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> Delete( int id)
     {
         await _deleteHanlder.Handle(new DeleteBrandCommand(id));
         return Ok(new { StatusCode = 200, message = $"Id'si :{id} olan Brand öğesi başarıyla silindi" });

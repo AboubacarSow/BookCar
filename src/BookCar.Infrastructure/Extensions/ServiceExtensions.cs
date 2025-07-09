@@ -5,19 +5,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BookCar.Infrastructure.DependencyInjection;
+namespace BookCar.Infrastructure.Extensions;
 public static class ServiceExtensions
 {
-    public static IServiceCollection ConfigureDbContext(this IServiceCollection services, 
-        IConfiguration configuration)
+
+    public static void AddInfrastructure(this IServiceCollection services,IConfiguration configuration)
     {
         services.AddDbContext<BookCarDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-        return services;
-    }
-    public static void ConfigureRepository(this IServiceCollection services)
-    {
-        services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
+
+
+        //Repository
         services.AddScoped<IAboutRepository, AboutRepository>();
         services.AddScoped<IBannerRepository, BannerRepository>();
         services.AddScoped<IBrandRepository, BrandRepository>();
@@ -30,6 +28,8 @@ public static class ServiceExtensions
         services.AddScoped<IServiceRepository, ServiceRepository>();
         services.AddScoped<IPricingRepository, PricingRepository>();
         services.AddScoped<ISocialMediaRepository, SocialMediaRepository>();
+        services.AddTransient(typeof(Lazy<>),typeof(LazyFactory<>));
         services.AddScoped<IUnitOfWork, UnitOfWork>();
     }
+   
 }

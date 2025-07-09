@@ -1,4 +1,7 @@
-namespace BookCar.Application.Mediator.Queries.Pricings;
+using BookCar.Application.Features.Mediator.Results.Pricings;
+using MediatR;
+
+namespace BookCar.Application.Features.Mediator.Queries.Pricings;
 
 public class GetPricingQuery : IRequest<List<GetPricingQueryResult>>
 {

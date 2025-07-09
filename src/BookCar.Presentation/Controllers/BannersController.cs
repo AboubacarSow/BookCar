@@ -52,8 +52,8 @@ public class BannersController: ControllerBase
         return Ok(new { StatusCode = 200, message = $"Id'si olan: {command.Id} Banner öğesi başarıyla güncellendi", Banner = command });
 
     }
-    [HttpDelete("")]
-    public async Task<IActionResult> Delete([FromQuery]int id)
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> Delete(int id)
     {
         await _removeBannerCommandHandler.Handle(new RemoveBannerCommand(id));
         return Ok(new { StatusCode = 200, message = $"Id'si :{id} olan Banner öğesi başarıyla silindi" });

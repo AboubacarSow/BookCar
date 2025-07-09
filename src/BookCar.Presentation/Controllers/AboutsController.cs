@@ -51,7 +51,7 @@ public class AboutsController : ControllerBase
         return Ok(new { StatusCode = 200, message = $"Id'si :{model.Id} olan Hakkında öğesi başarıyla güncellendi", About = model });
 
     }
-    [HttpDelete("{Id:int}")]
+    [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
     {
         await _removeCommandHandler.Handle(new RemoveAboutCommand(id));

@@ -4,14 +4,15 @@ using System.Linq.Expressions;
 
 namespace BookCar.Infrastructure.Data.Repositories;
 
-public class RepositoryBase<T> : IRepositoryBase<T> where T : class
+public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
 {
-    private readonly BookCarDbContext _context;
+    protected readonly BookCarDbContext _context;
 
-    public RepositoryBase(BookCarDbContext context)
+    protected RepositoryBase(BookCarDbContext context)
     {
         _context = context;
     }
+
     public void Add(T entity)
     {
         _context.Set<T>().Add(entity);

@@ -9,7 +9,7 @@ public class FooterAddressRepository : RepositoryBase<FooterAddress>, IFooterAdd
     {
     }
     
-    public void Create(FooterAddress footerAddress)=>Create(footerAddress);
+    public void Create(FooterAddress footerAddress)=>Add(footerAddress);
     
 
     public async Task<IEnumerable<FooterAddress>> GetAllAsync(bool trackChanges)
@@ -35,6 +35,6 @@ public class FooterAddressRepository : RepositoryBase<FooterAddress>, IFooterAdd
         }
     }
 
-    public void Update(FooterAddress footerAddress)=>Update(footerAddress);
+    public void Update(FooterAddress footerAddress)=>Edit(footerAddress);
     
 }

@@ -1,9 +1,6 @@
 ﻿using BookCar.Application.Interfaces.Repositories;
 using BookCar.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
-using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
 
 namespace BookCar.Infrastructure.Data.Repositories;
 

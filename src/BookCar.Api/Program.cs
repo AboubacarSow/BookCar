@@ -1,5 +1,5 @@
 using BookCar.Application.DependencyInjection;
-using BookCar.Infrastructure.DependencyInjection;
+using BookCar.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,8 +12,7 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.ConfigureDbContext(builder.Configuration);
-builder.Services.ConfigureRepository();
+builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
 

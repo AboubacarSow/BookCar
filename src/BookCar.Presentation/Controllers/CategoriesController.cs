@@ -54,8 +54,8 @@ public class CategoriesController: ControllerBase
         return Ok(new { StatusCode = 200, Message = $"Category with Id:{request.Id} has been successfully updated" ,Category=request});
     }
 
-    [HttpDelete]
-    public async Task<IActionResult> Delete([FromQuery]int id)
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> Delete(int id)
     {
         await _removeHandler.Handle(new RemoveCategoryCommand(id));
         return Ok(new { StatusCode = 200, Message = $"Category with Id :{id} has been successfully deleted" });

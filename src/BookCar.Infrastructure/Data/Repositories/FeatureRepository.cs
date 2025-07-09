@@ -10,7 +10,7 @@ public class FeatureRepository :RepositoryBase<Feature>, IFeatureRepository
     {
     }
 
-    public void Create(Feature feature)=>Create(feature);
+    public void Create(Feature feature)=>Add(feature);
     
 
     public async Task<IEnumerable<Feature>> GetAllAsync(bool trackChanges)
@@ -36,6 +36,6 @@ public class FeatureRepository :RepositoryBase<Feature>, IFeatureRepository
         }
     }
 
-    public void Update(Feature feature)=>Update(feature);
+    public void Update(Feature feature)=>Edit(feature);
     
 }

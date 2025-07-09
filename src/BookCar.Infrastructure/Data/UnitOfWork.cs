@@ -1,44 +1,59 @@
 ﻿using BookCar.Application.Interfaces.Repositories;
+using BookCar.Infrastructure.Data.Repositories;
 
 namespace BookCar.Infrastructure.Data;
 
 public class UnitOfWork : IUnitOfWork
 {
     private readonly BookCarDbContext _context;
-    private readonly IAboutRepository _aboutRepository;
-    private readonly IBannerRepository _bannerRepository;
-    private readonly IBrandRepository _brandRepository;
-    private readonly ICategoryRepository _categoryRepository;
-    private readonly IContactRepository _contactRepository;
-    private readonly ICarRepository _carRepository;
-    private readonly IFeatureRepository _featureRepository;
-    private readonly IFooterAddressRepository _footerAddressRepository;
+    private readonly Lazy<IAboutRepository> _aboutRepository;
+    private readonly Lazy<IBannerRepository> _bannerRepository;
+    private readonly Lazy<IBrandRepository> _brandRepository;
+    private readonly Lazy<ICategoryRepository> _categoryRepository;
+    private readonly Lazy<IContactRepository> _contactRepository;
+    private readonly Lazy<ICarRepository> _carRepository;
+    private readonly Lazy<IFeatureRepository> _featureRepository;
+    private readonly Lazy<IFooterAddressRepository> _footerAddressRepository;
+    private readonly Lazy<ILocationRepository> _locationRepository;
+    private readonly Lazy<IPricingRepository> _priceRepository;
+    private readonly Lazy<IServiceRepository> _serviceRepository;
+    private readonly Lazy<ISocialMediaRepository> _socialMediaRepository;
 
-    public UnitOfWork(IAboutRepository aboutRepository, BookCarDbContext context,
-       IBannerRepository bannerRepository, IBrandRepository brandRepository,
-       ICategoryRepository categoryRepository, IContactRepository contactRepository,
-       ICarRepository carRepository, IFeatureRepository featureRepository, IFooterAddressRepository footerAddressRepository)
+    public UnitOfWork( BookCarDbContext context,Lazy<IAboutRepository> aboutRepository,
+       Lazy<IBannerRepository> bannerRepository, Lazy<IBrandRepository> brandRepository,
+       Lazy<ICategoryRepository> categoryRepository, Lazy<IContactRepository> contactRepository,
+       Lazy<ICarRepository> carRepository, Lazy<IFeatureRepository> featureRepository, 
+       Lazy<IFooterAddressRepository> footerAddressRepository, Lazy<ILocationRepository> locationRepository, 
+       Lazy<IPricingRepository> priceRepository, Lazy<IServiceRepository> serviceRepository, 
+       Lazy<ISocialMediaRepository> socialMediaRepository)
     {
-        _aboutRepository = aboutRepository;
         _context = context;
+        _aboutRepository = aboutRepository;
         _bannerRepository = bannerRepository;
         _brandRepository = brandRepository;
         _categoryRepository = categoryRepository;
         _contactRepository = contactRepository;
-        _carRepository = carRepository;
+        _carRepository =carRepository;
         _featureRepository = featureRepository;
         _footerAddressRepository = footerAddressRepository;
+        _locationRepository = locationRepository ;
+        _priceRepository = priceRepository ;
+        _serviceRepository = serviceRepository ;
+        _socialMediaRepository = socialMediaRepository ;
     }
 
-    public IAboutRepository About => _aboutRepository;
-    public IBannerRepository Banner => _bannerRepository;
-    public IBrandRepository Brand => _brandRepository;
-    public ICategoryRepository Category => _categoryRepository;
-    public IContactRepository Contact => _contactRepository;
-    public ICarRepository Car => _carRepository;
-    public IFeatureRepository Feature => _featureRepository;
-    public IFooterAddressRepository FooterAddress => _footerAddressRepository;
-
+    public IAboutRepository About => _aboutRepository.Value;
+    public IBannerRepository Banner => _bannerRepository.Value;
+    public IBrandRepository Brand => _brandRepository.Value;
+    public ICategoryRepository Category => _categoryRepository.Value;
+    public IContactRepository Contact => _contactRepository.Value;
+    public ICarRepository Car => _carRepository.Value;
+    public IFeatureRepository Feature => _featureRepository.Value;
+    public IFooterAddressRepository FooterAddress => _footerAddressRepository.Value;
+    public ILocationRepository Location => _locationRepository.Value;
+    public IServiceRepository Service => _serviceRepository.Value;
+    public IPricingRepository Pricing => _priceRepository.Value;
+    public ISocialMediaRepository SocialMedia => _socialMediaRepository.Value;
     public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
     
 }
