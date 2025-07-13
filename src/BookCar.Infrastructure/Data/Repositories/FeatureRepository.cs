@@ -1,10 +1,11 @@
 ﻿using BookCar.Application.Interfaces.Repositories;
 using BookCar.Domain.Entities;
+using BookCar.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookCar.Infrastructure.Data.Repositories;
 
-public class FeatureRepository :RepositoryBase<Feature>, IFeatureRepository
+internal class FeatureRepository :RepositoryBase<Feature>, IFeatureRepository
 {
     public FeatureRepository(BookCarDbContext context) : base(context)
     {

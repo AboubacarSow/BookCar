@@ -1,10 +1,11 @@
 ﻿using BookCar.Application.Interfaces.Repositories;
+using BookCar.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace BookCar.Infrastructure.Data.Repositories;
 
-public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
+internal abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
 {
     protected readonly BookCarDbContext _context;
 

@@ -1,10 +1,11 @@
 using BookCar.Application.Interfaces.Repositories;
 using BookCar.Domain.Entities;
+using BookCar.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookCar.Infrastructure.Data.Repositories;
 
-public class PricingRepository(BookCarDbContext context) : RepositoryBase<Pricing>(context), IPricingRepository
+internal class PricingRepository(BookCarDbContext context) : RepositoryBase<Pricing>(context), IPricingRepository
 {
     public void Create(Pricing pricing) => Add(pricing);
     public async Task<IEnumerable<Pricing>> GetAllAsync(bool trackChanges)

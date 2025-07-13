@@ -1,9 +1,10 @@
 using BookCar.Application.Interfaces.Repositories;
 using BookCar.Domain.Entities;
+using BookCar.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 namespace BookCar.Infrastructure.Data.Repositories;
 
-public class FooterAddressRepository : RepositoryBase<FooterAddress>, IFooterAddressRepository
+internal class FooterAddressRepository : RepositoryBase<FooterAddress>, IFooterAddressRepository
 {
     public FooterAddressRepository(BookCarDbContext dbContext) : base(dbContext)
     {

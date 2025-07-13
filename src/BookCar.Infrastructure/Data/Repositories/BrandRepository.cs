@@ -1,9 +1,10 @@
 using BookCar.Application.Interfaces.Repositories;
 using BookCar.Domain.Entities;
+using BookCar.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookCar.Infrastructure.Data.Repositories;
-public class BrandRepository : RepositoryBase<Brand>, IBrandRepository
+internal class BrandRepository : RepositoryBase<Brand>, IBrandRepository
 {
     public BrandRepository(BookCarDbContext context) : base(context)
     {

@@ -1,10 +1,11 @@
 using BookCar.Application.Interfaces.Repositories;
 using BookCar.Domain.Entities;
+using BookCar.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookCar.Infrastructure.Data.Repositories;
 
-public class ServiceRepository : RepositoryBase<Service>, IServiceRepository
+internal class ServiceRepository : RepositoryBase<Service>, IServiceRepository
 {
     public ServiceRepository(BookCarDbContext context) : base(context)
     {

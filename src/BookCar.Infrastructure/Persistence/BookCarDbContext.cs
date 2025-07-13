@@ -1,6 +1,6 @@
 ﻿using BookCar.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-namespace BookCar.Infrastructure.Data;
+namespace BookCar.Infrastructure.Persistence;
 
 public class BookCarDbContext : DbContext
 {

@@ -3,7 +3,6 @@
 public interface IUnitOfWork
 {
     IAboutRepository About { get; }
-
     IBannerRepository Banner { get; }
     IBrandRepository Brand { get; }
     ICategoryRepository Category { get; }
@@ -15,6 +14,7 @@ public interface IUnitOfWork
     IServiceRepository Service { get; }
     IPricingRepository Pricing { get; }
     ISocialMediaRepository SocialMedia { get; }
+    ITestimonialRepository Testimonial{ get; }
 
     Task SaveChangesAsync();
 }

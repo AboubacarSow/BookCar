@@ -1,6 +1,7 @@
 using BookCar.Application.Interfaces.Repositories;
 using BookCar.Infrastructure.Data;
 using BookCar.Infrastructure.Data.Repositories;
+using BookCar.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +29,7 @@ public static class ServiceExtensions
         services.AddScoped<IServiceRepository, ServiceRepository>();
         services.AddScoped<IPricingRepository, PricingRepository>();
         services.AddScoped<ISocialMediaRepository, SocialMediaRepository>();
+        services.AddScoped<ITestimonialRepository, TestimonialRepository>();
         services.AddTransient(typeof(Lazy<>),typeof(LazyFactory<>));
         services.AddScoped<IUnitOfWork, UnitOfWork>();
     }

@@ -1,10 +1,11 @@
 using BookCar.Application.Interfaces.Repositories;
 using BookCar.Domain.Entities;
+using BookCar.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookCar.Infrastructure.Data.Repositories;
 
-public class BannerRepository : RepositoryBase<Banner>, IBannerRepository
+internal class BannerRepository : RepositoryBase<Banner>, IBannerRepository
 {
     public BannerRepository(BookCarDbContext context) : base(context)
     {

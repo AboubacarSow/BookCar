@@ -1,9 +1,10 @@
 using BookCar.Application.Interfaces.Repositories;
 using BookCar.Domain.Entities;
+using BookCar.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookCar.Infrastructure.Data.Repositories;
-public class CategoryRepository : RepositoryBase<Category>, ICategoryRepository
+internal class CategoryRepository : RepositoryBase<Category>, ICategoryRepository
 {
     public CategoryRepository(BookCarDbContext context) : base(context)
     {

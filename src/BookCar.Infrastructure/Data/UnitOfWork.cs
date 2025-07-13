@@ -1,9 +1,9 @@
 ﻿using BookCar.Application.Interfaces.Repositories;
-using BookCar.Infrastructure.Data.Repositories;
+using BookCar.Infrastructure.Persistence;
 
 namespace BookCar.Infrastructure.Data;
 
-public class UnitOfWork : IUnitOfWork
+internal class UnitOfWork : IUnitOfWork
 {
     private readonly BookCarDbContext _context;
     private readonly Lazy<IAboutRepository> _aboutRepository;
@@ -18,14 +18,15 @@ public class UnitOfWork : IUnitOfWork
     private readonly Lazy<IPricingRepository> _priceRepository;
     private readonly Lazy<IServiceRepository> _serviceRepository;
     private readonly Lazy<ISocialMediaRepository> _socialMediaRepository;
+    private readonly Lazy<ITestimonialRepository> _testimonialRepository;
 
-    public UnitOfWork( BookCarDbContext context,Lazy<IAboutRepository> aboutRepository,
+    public UnitOfWork(BookCarDbContext context, Lazy<IAboutRepository> aboutRepository,
        Lazy<IBannerRepository> bannerRepository, Lazy<IBrandRepository> brandRepository,
        Lazy<ICategoryRepository> categoryRepository, Lazy<IContactRepository> contactRepository,
-       Lazy<ICarRepository> carRepository, Lazy<IFeatureRepository> featureRepository, 
-       Lazy<IFooterAddressRepository> footerAddressRepository, Lazy<ILocationRepository> locationRepository, 
-       Lazy<IPricingRepository> priceRepository, Lazy<IServiceRepository> serviceRepository, 
-       Lazy<ISocialMediaRepository> socialMediaRepository)
+       Lazy<ICarRepository> carRepository, Lazy<IFeatureRepository> featureRepository,
+       Lazy<IFooterAddressRepository> footerAddressRepository, Lazy<ILocationRepository> locationRepository,
+       Lazy<IPricingRepository> priceRepository, Lazy<IServiceRepository> serviceRepository,
+       Lazy<ISocialMediaRepository> socialMediaRepository, Lazy<ITestimonialRepository> testimonialRepository)
     {
         _context = context;
         _aboutRepository = aboutRepository;
@@ -33,13 +34,14 @@ public class UnitOfWork : IUnitOfWork
         _brandRepository = brandRepository;
         _categoryRepository = categoryRepository;
         _contactRepository = contactRepository;
-        _carRepository =carRepository;
+        _carRepository = carRepository;
         _featureRepository = featureRepository;
         _footerAddressRepository = footerAddressRepository;
-        _locationRepository = locationRepository ;
-        _priceRepository = priceRepository ;
-        _serviceRepository = serviceRepository ;
-        _socialMediaRepository = socialMediaRepository ;
+        _locationRepository = locationRepository;
+        _priceRepository = priceRepository;
+        _serviceRepository = serviceRepository;
+        _socialMediaRepository = socialMediaRepository;
+        _testimonialRepository = testimonialRepository;
     }
 
     public IAboutRepository About => _aboutRepository.Value;
@@ -54,6 +56,7 @@ public class UnitOfWork : IUnitOfWork
     public IServiceRepository Service => _serviceRepository.Value;
     public IPricingRepository Pricing => _priceRepository.Value;
     public ISocialMediaRepository SocialMedia => _socialMediaRepository.Value;
+    public ITestimonialRepository Testimonial => _testimonialRepository.Value;
     public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
     
 }

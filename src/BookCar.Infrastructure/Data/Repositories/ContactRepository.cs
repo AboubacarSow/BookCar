@@ -1,9 +1,10 @@
 using BookCar.Application.Interfaces.Repositories;
 using BookCar.Domain.Entities;
+using BookCar.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookCar.Infrastructure.Data.Repositories;
-public class ContactRepository : RepositoryBase<Contact>, IContactRepository
+internal class ContactRepository : RepositoryBase<Contact>, IContactRepository
 {
     public ContactRepository(BookCarDbContext context) : base(context)
     {

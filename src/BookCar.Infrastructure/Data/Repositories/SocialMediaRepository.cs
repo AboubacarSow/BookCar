@@ -1,10 +1,11 @@
 using BookCar.Application.Interfaces.Repositories;
 using BookCar.Domain.Entities;
+using BookCar.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookCar.Infrastructure.Data.Repositories;
 
-public class SocialMediaRepository : RepositoryBase<SocialMedia>, ISocialMediaRepository
+internal class SocialMediaRepository : RepositoryBase<SocialMedia>, ISocialMediaRepository
 {
     public SocialMediaRepository(BookCarDbContext context) : base(context)
     {
