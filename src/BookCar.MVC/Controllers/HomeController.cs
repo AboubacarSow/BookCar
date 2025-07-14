@@ -4,15 +4,14 @@ using System.Diagnostics;
 
 namespace BookCar.MVC.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController(ILogger<HomeController> logger) : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<HomeController> _logger = logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public IActionResult Index()
         {
-            _logger = logger;
+            return View();
         }
-
         public IActionResult About()
         {
             return View();
@@ -22,7 +21,20 @@ namespace BookCar.MVC.Controllers
         {
             return View();
         }
-        public IActionResult Index()
+        public IActionResult Pricing()
+        {
+            return View();
+        }
+        public IActionResult Cars()
+        {
+            return View();
+        }
+
+        public IActionResult Blog()
+        {
+            return View();  
+        }
+        public IActionResult Contact()
         {
             return View();
         }
