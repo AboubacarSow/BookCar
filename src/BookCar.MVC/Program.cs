@@ -1,13 +1,18 @@
+using BookCar.MVC.Infrastructure.Extensions;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.ConfigureApiSettings(builder.Configuration);
+builder.Services.AddAutoMapper(config => config.AddMaps(Assembly.GetExecutingAssembly()));
+builder.Services.ConfigureApiServices();
 
+builder.Services.AddControllersWithViews();
 builder.Services.AddRouting(options =>
 { 
     options.LowercaseUrls = true;
-}
- );
+});
 
 
 var app = builder.Build();
