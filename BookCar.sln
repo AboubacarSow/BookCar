@@ -5,17 +5,17 @@ VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookCar.Domain", "src\BookCar.Domain\BookCar.Domain.csproj", "{F5850A4C-EA50-429D-BDD1-24D18E6AFDC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookCar.Domain", "src\backend\BookCar.Domain\BookCar.Domain.csproj", "{F5850A4C-EA50-429D-BDD1-24D18E6AFDC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookCar.Infrastructure", "src\BookCar.Infrastructure\BookCar.Infrastructure.csproj", "{2D3BFFBA-AC0B-4E3D-ACC4-CA9656E9D9E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookCar.Infrastructure", "src\backend\BookCar.Infrastructure\BookCar.Infrastructure.csproj", "{2D3BFFBA-AC0B-4E3D-ACC4-CA9656E9D9E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookCar.Application", "src\BookCar.Application\BookCar.Application.csproj", "{66B41BB9-89E4-4877-B414-3CF250892B57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookCar.Application", "src\backend\BookCar.Application\BookCar.Application.csproj", "{66B41BB9-89E4-4877-B414-3CF250892B57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookCar.Presentation", "src\BookCar.Presentation\BookCar.Presentation.csproj", "{BE82E839-7EC7-4212-B1F9-24051E866706}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookCar.Presentation", "src\backend\BookCar.Presentation\BookCar.Presentation.csproj", "{BE82E839-7EC7-4212-B1F9-24051E866706}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookCar.Api", "src\BookCar.Api\BookCar.Api.csproj", "{CEC64096-2C37-4C83-840C-1E74B503B906}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookCar.Api", "src\backend\BookCar.Api\BookCar.Api.csproj", "{CEC64096-2C37-4C83-840C-1E74B503B906}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookCar.MVC", "src\BookCar.MVC\BookCar.MVC.csproj", "{C12ABA86-7A19-4588-A20A-FC5267957CAB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookCar.MVC", "src\frontend\BookCar.MVC\BookCar.MVC.csproj", "{C12ABA86-7A19-4588-A20A-FC5267957CAB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{E728712E-EBE9-4CF2-97F5-F3820086AA35}"
 EndProject
