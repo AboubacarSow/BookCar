@@ -1,6 +1,9 @@
 ﻿using BookCar.Application.Features.CQRS.Commands.Contacts;
 using BookCar.Application.Features.CQRS.Handlers.Contacts;
 using BookCar.Application.Features.CQRS.Queries.Contacts;
+using BookCar.Application.Features.Mediator.Commands.ContactInfos;
+using BookCar.Application.Features.Mediator.Queries.ContactInfos;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -34,7 +37,7 @@ public class ContactsController: ControllerBase
         return Ok(contacts);
     }
     [HttpGet("{id:int}")]
-    public async Task<IActionResult> Get([FromQuery]int id)
+    public async Task<IActionResult> Get(int id)
     {
         var contact = await _getByIdHandler.Handle(new GetContactByIdQuery(id));
         return Ok(contact);
@@ -59,5 +62,28 @@ public class ContactsController: ControllerBase
         return Ok(new { StatusCode = 200, Message = $"Contact with Id: {id} has been successfully deleted"});
 
     }
+
+}
+
+[ApiController]
+[Route("api/contactInfos")]
+public class ContactInfosController(ISender sender):ControllerBase
+{
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        var dtos = await sender.Send(new GetContactInfosQuery());
+        return Ok(dtos);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CreateOneContactInfo(CreateContactInfoCommand command)
+    {
+        var result=await sender.Send(command);
+
+        return Ok($"Contact Info with Id:{result} has been successfully created");
+       
+    }
+
 
 }

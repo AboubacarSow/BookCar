@@ -4,12 +4,9 @@ using BookCar.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookCar.Infrastructure.Data.Repositories;
-internal class TestimonialRepository :RepositoryBase<Testimonial>, ITestimonialRepository
+internal class TestimonialRepository(BookCarDbContext context)
+        : RepositoryBase<Testimonial>(context), ITestimonialRepository
 {
-    public TestimonialRepository(BookCarDbContext context) : base(context)
-    {
-    }
-
     public async Task<IEnumerable<Testimonial>> GetAllAsync(bool trackChanges)
     {
         return await FindAll(trackChanges).ToListAsync();

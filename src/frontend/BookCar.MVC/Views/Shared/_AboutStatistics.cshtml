@@ -1,0 +1,41 @@
+@model StatisticViewModel
+
+<section class="ftco-counter ftco-section img" id="section-counter">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+                <div class="block-18">
+                    <div class="text text-border d-flex align-items-center">
+                        <strong class="number" data-number="@Model.YearsOfExperience">0</strong>
+                        <span>Yıl <br>Deneyimi</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+                <div class="block-18">
+                    <div class="text text-border d-flex align-items-center">
+                        <strong class="number" data-number="@Model.TotalCars">0</strong>
+                        <span>Toplam <br>Araba</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+                <div class="block-18">
+                    <div class="text text-border d-flex align-items-center">
+                        <strong class="number" data-number="@Model.HappyCustomers">0</strong>
+                        <span>Mutlu <br>Müşteriler</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+                <div class="block-18">
+                    <div class="text d-flex align-items-center">
+                        <strong class="number" data-number="@Model.TotalBranches">0</strong>
+                        <span>Toplam <br>Şube</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

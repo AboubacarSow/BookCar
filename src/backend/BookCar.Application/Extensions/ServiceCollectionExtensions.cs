@@ -5,6 +5,7 @@ using BookCar.Application.Features.CQRS.Handlers.Banners;
 using BookCar.Application.Features.CQRS.Handlers.Brands;
 using BookCar.Application.Features.CQRS.Handlers.Cars;
 using BookCar.Application.Features.CQRS.Handlers.Categories;
+using BookCar.Application.Features.CQRS.Handlers.Contacts;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BookCar.Application.DependencyInjection;
@@ -49,7 +50,12 @@ public static class ServiceCollectionExtensions
         services.AddScoped<UpdateCarCommandHandler>();
         services.AddScoped<RemoveCarCommandHandler>();
 
-        
+        // Contact Handlers Registration
+        services.AddScoped<CreateContactCommandHandler>();
+        services.AddScoped<GetContactQueryHandler>();
+        services.AddScoped<DeleteContactCommandHandler>();
+        services.AddScoped<GetContactByIdQueryHandler>();
+        services.AddScoped<UpdateContactCommandHandler>();
 
         services.AddMediatR(config => config.RegisterServicesFromAssembly(typeof(AssemblyReference).Assembly));
     }

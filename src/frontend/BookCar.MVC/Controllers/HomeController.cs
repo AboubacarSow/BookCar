@@ -14,17 +14,22 @@ public class HomeController(ILogger<HomeController> logger,IMapper _mapper) : Co
     {
         return View();
     }
-    public async Task<IActionResult> About([FromServices]IAboutService aboutService)
+    public async Task<IActionResult> About([FromServices]IAboutService aboutService, [FromServices]ITestimonialService testimonialService)
     {
         var model= await aboutService.GetAbout();   
-        var modelView=_mapper.Map<AboutViewModel>(model);
+        var modelView=_mapper.Map<AboutViewModel>(model) with
+        {
+            Testimonials = await testimonialService.GetTestimonials()
+        };
         return View(modelView);
     }
 
-    public IActionResult Services()
+    public async Task<IActionResult> Services([FromServices]IHizmetService hizmetService)
     {
-        return View();
+        var hizmetler = hizmetService.GetHizmetler().GetAwaiter().GetResult();
+        return View(hizmetler);
     }
+    
     public IActionResult Pricing()
     {
         return View();
@@ -38,9 +43,10 @@ public class HomeController(ILogger<HomeController> logger,IMapper _mapper) : Co
     {
         return View();  
     }
-    public IActionResult Contact()
+    public async Task<IActionResult> Contact([FromServices] IContactInfoService contactInfoService)
     {
-        return View();
+        var data = await contactInfoService.GetContactInfo();
+        return View(data);
     }
 
     public IActionResult Privacy()

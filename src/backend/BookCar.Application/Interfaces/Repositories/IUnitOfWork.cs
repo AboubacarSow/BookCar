@@ -7,6 +7,7 @@ public interface IUnitOfWork
     IBrandRepository Brand { get; }
     ICategoryRepository Category { get; }
     IContactRepository Contact { get; }
+    IContactInfoRepository ContactInfo { get; }
     ICarRepository Car { get; }
     IFeatureRepository Feature { get; }
     IFooterAddressRepository FooterAddress { get; }
