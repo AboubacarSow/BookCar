@@ -21,3 +21,8 @@ public interface IContactInfoService
 {
     Task<ContactInfoDto> GetContactInfo();
 } 
+
+public interface IContactService
+{
+    Task<bool> SendContactMessage(ContactDto createContactDto);
+}

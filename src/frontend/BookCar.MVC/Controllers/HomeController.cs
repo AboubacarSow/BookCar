@@ -48,6 +48,18 @@ public class HomeController(ILogger<HomeController> logger,IMapper _mapper) : Co
         var data = await contactInfoService.GetContactInfo();
         return View(data);
     }
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> SendContact(ContactDto model, [FromServices] IContactService contactService)
+    {
+        if (ModelState.IsValid)
+        {
+            var result=await contactService.SendContactMessage(model);
+            return Json( new {success=result,});
+        }
+        ModelState.AddModelError("", "Invalid data provided");
+        return RedirectToAction(nameof(Contact), model);
+    }
 
     public IActionResult Privacy()
     {

@@ -1,6 +1,7 @@
 ﻿using BookCar.MVC.Dtos.Abouts;
 using BookCar.MVC.Interfaces;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace BookCar.MVC.Services;
 
@@ -36,7 +37,7 @@ internal class TestimonialService(IHttpClientFactory httpClientFactory, ILogger<
 
 
 }
-internal class HizmetService(IHttpClientFactory httpClientFactory, ILogger<HizmetService> logger):IHizmetService
+internal class HizmetService(IHttpClientFactory httpClientFactory):IHizmetService
 {
     private readonly HttpClient _client = httpClientFactory.CreateClient("BookCarApi");
     
@@ -60,5 +61,17 @@ internal class ContactInfoService(IHttpClientFactory httpClientFactory):IContact
         var jsonData = await result.Content.ReadAsStringAsync();
         var contactInfo = JsonConvert.DeserializeObject<List<ContactInfoDto>>(jsonData)?.FirstOrDefault();
         return contactInfo!;
+    }
+}
+
+internal class ContactService(IHttpClientFactory httpClientFactory) : IContactService
+{
+    private readonly HttpClient _client = httpClientFactory.CreateClient("BookCarApi");
+    public async Task<bool> SendContactMessage(ContactDto createContactDto)
+    {
+        var jsonData= JsonConvert.SerializeObject(createContactDto);
+        var content= new StringContent(jsonData,Encoding.UTF8,"application/json");
+        var result = await _client.PostAsync("contacts",content);
+        return result.StatusCode.ToString()=="201";
     }
 }
