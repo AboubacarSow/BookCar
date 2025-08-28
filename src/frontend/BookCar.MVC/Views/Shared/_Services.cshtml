@@ -1,12 +1,6 @@
-﻿@model List<HizmetDto>
-@{
-    ViewData["Title"] = "Services";
-    string title = "Hizmetlerimiz";
-}
-<partial name="_HeroWraper" model="@title" />
+@model List<HizmetDto>
 
-
-@* <section class="ftco-section">
+<section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center mb-5">
             <div class="col-md-7 text-center heading-section ftco-animate">
@@ -29,9 +23,4 @@
         }
         </div>
     </div>
-</section> *@
-
-<partial name="_Services" model="@Model"/>
-
-<partial name="_CallToAction" />
-
+</section>

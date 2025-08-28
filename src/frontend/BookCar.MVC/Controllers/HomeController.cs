@@ -3,16 +3,24 @@ using BookCar.MVC.Interfaces;
 using BookCar.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace BookCar.MVC.Controllers;
 
-public class HomeController(ILogger<HomeController> logger,IMapper _mapper) : Controller
+public class HomeController(ILogger<HomeController> logger,IMapper _mapper,IContactService contactService) : Controller
 {
     private readonly ILogger<HomeController> _logger = logger;
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index([FromServices]IHizmetService service, 
+        [FromServices]ITestimonialService testimonialService,
+        [FromServices])
     {
-        return View();
+        var viewModel= new IndexViewModel 
+        { 
+            Hizmetler=await  service.GetHizmetler(),
+            Testimonials=await testimonialService.GetTestimonials()
+        };
+        return View(viewModel);
     }
     public async Task<IActionResult> About([FromServices]IAboutService aboutService, [FromServices]ITestimonialService testimonialService)
     {
@@ -26,7 +34,7 @@ public class HomeController(ILogger<HomeController> logger,IMapper _mapper) : Co
 
     public async Task<IActionResult> Services([FromServices]IHizmetService hizmetService)
     {
-        var hizmetler = hizmetService.GetHizmetler().GetAwaiter().GetResult();
+        var hizmetler =await  hizmetService.GetHizmetler();
         return View(hizmetler);
     }
     
@@ -49,16 +57,18 @@ public class HomeController(ILogger<HomeController> logger,IMapper _mapper) : Co
         return View(data);
     }
     [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> SendContact(ContactDto model, [FromServices] IContactService contactService)
+    public async Task<IActionResult> SendMessage([FromBody]ContactDto model)
     {
-        if (ModelState.IsValid)
+        try
         {
-            var result=await contactService.SendContactMessage(model);
-            return Json( new {success=result,});
+            var result = await contactService.SendContactMessage(model);
+            return Json(new { success = result });
         }
-        ModelState.AddModelError("", "Invalid data provided");
-        return RedirectToAction(nameof(Contact), model);
+        catch (Exception ex)
+        {
+            return Json(new { success = false, message = ex.Message});
+
+        }
     }
 
     public IActionResult Privacy()

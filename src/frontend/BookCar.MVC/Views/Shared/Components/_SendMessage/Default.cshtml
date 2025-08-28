@@ -1,0 +1,63 @@
+﻿ <div class="col-md-8 block-9 mb-md-5">
+    <form method="post" class="bg-light p-5 contact-form" id="sendmessage">
+        <div class="form-group">
+            <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+            <input type="email" id="email" class="form-control"  placeholder="Your Email" required>
+        </div>
+        <div class="form-group">
+            <input type="text" id="subject" class="form-control" placeholder="Subject" required>
+        </div>
+        <div class="form-group">
+            <textarea name="" id="message" cols="30" rows="7" class="form-control" placeholder="Message" required></textarea>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Mesajı Gönder" class="btn btn-primary py-3 px-5">
+        </div>
+    </form>
+</div>
+
+<script>
+       let formulaire = document.getElementById('sendmessage');
+
+    formulaire.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        let formData = {
+            Name: document.getElementById('name').value,
+            Email: document.getElementById('email').value,
+            Subject: document.getElementById('subject').value,
+            Message: document.getElementById('message').value
+        };
+
+        if (!formData.Name || !formData.Email || !formData.Subject || !formData.Message) {
+            console.log('The form is empty or incomplete');
+            return;
+        }
+
+        fetch("/Home/SendMessage", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Mesajınız Başarıyla Gönderildi');
+                formulaire.reset();
+                return ;
+            } else {
+                alert('İşlem Başarısız: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            alert("Hata oluştu");
+        });
+    });
+</script>
+

@@ -1,6 +1,7 @@
 ﻿using BookCar.MVC.Dtos.Abouts;
 using BookCar.MVC.Interfaces;
 using Newtonsoft.Json;
+using System.Net;
 using System.Text;
 
 namespace BookCar.MVC.Services;
@@ -71,7 +72,7 @@ internal class ContactService(IHttpClientFactory httpClientFactory) : IContactSe
     {
         var jsonData= JsonConvert.SerializeObject(createContactDto);
         var content= new StringContent(jsonData,Encoding.UTF8,"application/json");
-        var result = await _client.PostAsync("contacts",content);
-        return result.StatusCode.ToString()=="201";
+         await _client.PostAsync("contacts",content);
+        return true;
     }
 }

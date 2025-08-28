@@ -22,5 +22,6 @@ public static class ServiceCollectionExtensions
         services.AddScoped<ITestimonialService, TestimonialService>();
         services.AddScoped<IHizmetService, HizmetService>();
         services.AddScoped<IContactInfoService, ContactInfoService>();
+        services.AddScoped<IContactService, ContactService>();
     }
 }

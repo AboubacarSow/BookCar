@@ -11,8 +11,10 @@ public record ContactInfoDto(int Id,
     string Email,
     string PhoneNumber);
 
-public record ContactDto(int Id,
+public record ContactDto(
     string Name,
     string Email,
     string Subject,
     string Message);
+
+
