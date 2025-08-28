@@ -13,10 +13,11 @@ public class HomeController(ILogger<HomeController> logger,IMapper _mapper,ICont
 
     public async Task<IActionResult> Index([FromServices]IHizmetService service, 
         [FromServices]ITestimonialService testimonialService,
-        [FromServices])
+        [FromServices]IAboutService aboutService)
     {
         var viewModel= new IndexViewModel 
         { 
+            AboutInfo= _mapper.Map<AboutInfo>(await aboutService.GetAbout()),
             Hizmetler=await  service.GetHizmetler(),
             Testimonials=await testimonialService.GetTestimonials()
         };
@@ -25,11 +26,14 @@ public class HomeController(ILogger<HomeController> logger,IMapper _mapper,ICont
     public async Task<IActionResult> About([FromServices]IAboutService aboutService, [FromServices]ITestimonialService testimonialService)
     {
         var model= await aboutService.GetAbout();   
-        var modelView=_mapper.Map<AboutViewModel>(model) with
-        {
-            Testimonials = await testimonialService.GetTestimonials()
+       var aboutInfo=_mapper.Map<AboutInfo>(model);
+       var aboutViewModel= new AboutViewModel
+       {
+            AboutInfo=aboutInfo,
+            Testimonials=await testimonialService.GetTestimonials()
         };
-        return View(modelView);
+       
+        return View(aboutViewModel);
     }
 
     public async Task<IActionResult> Services([FromServices]IHizmetService hizmetService)

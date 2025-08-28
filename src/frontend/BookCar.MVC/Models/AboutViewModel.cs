@@ -1,11 +1,8 @@
 ﻿namespace BookCar.MVC.Models;
 
-internal record AboutViewModel(int Id,
- string Title,
- string Description,
-  string ImageUrl
-)
+internal record AboutViewModel()
 {
+    public AboutInfo AboutInfo { get; init; } = new();
     public List<TestimonialDto> Testimonials { get; init; } = [];
 
     public StatisticViewModel Statistics { get; init; } = new();
@@ -19,10 +16,18 @@ public  record StatisticViewModel
 }
 public class IndexViewModel
 {
+    public AboutInfo AboutInfo { get; set; } = new();
     public List<HizmetDto> Hizmetler { get; init; } = [];
 
     public List<TestimonialDto> Testimonials { get; init; } = [];
 
     public StatisticViewModel Statistics { get; set; } = new();
+}
+
+public class AboutInfo{
+    public int Id { get; set; }
+    public string Title { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public string ImageUrl { get; set; } = string.Empty;
 }
 

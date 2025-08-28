@@ -8,6 +8,6 @@ public class AboutAutoMapper:Profile
 {
     public AboutAutoMapper()
     {
-        CreateMap<GetAboutDto, AboutViewModel>();
+        CreateMap<GetAboutDto, AboutInfo>();
     }
 }
