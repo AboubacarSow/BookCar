@@ -19,7 +19,8 @@ public class HomeController(ILogger<HomeController> logger,IMapper _mapper,ICont
         { 
             AboutInfo= _mapper.Map<AboutInfo>(await aboutService.GetAbout()),
             Hizmetler=await  service.GetHizmetler(),
-            Testimonials=await testimonialService.GetTestimonials()
+            Testimonials=await testimonialService.GetTestimonials(),
+
         };
         return View(viewModel);
     }
@@ -46,10 +47,12 @@ public class HomeController(ILogger<HomeController> logger,IMapper _mapper,ICont
     {
         return View();
     }
-    public IActionResult Cars()
+    public async Task<IActionResult> Cars([FromServices] ICarService carService)
     {
-        return View();
+        var cars =await carService.GetCarsWithBrand();
+        return View(cars);
     }
+   
 
     public IActionResult Blog()
     {

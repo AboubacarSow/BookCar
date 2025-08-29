@@ -11,7 +11,7 @@ internal class CarRepository : RepositoryBase<Car>, ICarRepository
     {
     }
 
-    public void Create(Car car)=>Create(car);
+    public void Create(Car car)=>Add(car);
     
 
     public async Task<IEnumerable<Car>> GetAllAsync(bool trackChanges)

@@ -20,9 +20,18 @@ public interface IHizmetService
 public interface IContactInfoService
 {
     Task<ContactInfoDto> GetContactInfo();
-} 
+}
 
 public interface IContactService
 {
     Task<bool> SendContactMessage(ContactDto createContactDto);
+}
+public interface IBannerService
+{
+    Task<BannerDto> GetBanner();
+}
+
+public interface ICarService
+{
+    Task<List<CarWithBrandDto>> GetCarsWithBrand();
 }

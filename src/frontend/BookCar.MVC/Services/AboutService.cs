@@ -70,9 +70,33 @@ internal class ContactService(IHttpClientFactory httpClientFactory) : IContactSe
     private readonly HttpClient _client = httpClientFactory.CreateClient("BookCarApi");
     public async Task<bool> SendContactMessage(ContactDto createContactDto)
     {
-        var jsonData= JsonConvert.SerializeObject(createContactDto);
-        var content= new StringContent(jsonData,Encoding.UTF8,"application/json");
-         await _client.PostAsync("contacts",content);
+        var jsonData = JsonConvert.SerializeObject(createContactDto);
+        var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+        await _client.PostAsync("contacts", content);
         return true;
+    }
+}
+
+internal class BannerService(IHttpClientFactory httpClientFactory) : IBannerService
+{
+    private readonly HttpClient _client = httpClientFactory.CreateClient("BookCarApi");
+    public async Task<BannerDto> GetBanner()
+    {
+        var result = await _client.GetAsync("banners");
+        var jsonData = await result.Content.ReadAsStringAsync();
+        var banner = JsonConvert.DeserializeObject<List<BannerDto>>(jsonData)?.FirstOrDefault();
+        return banner!;
+    }
+}
+
+internal class CarService(IHttpClientFactory httpClientFactory) : ICarService
+{
+    private readonly HttpClient _client = httpClientFactory.CreateClient("BookCarApi");
+    public async Task<List<CarWithBrandDto>> GetCarsWithBrand()
+    {
+        var result = await _client.GetAsync("cars/withbrand");
+        var jsonData = await result.Content.ReadAsStringAsync();
+        var cars = JsonConvert.DeserializeObject<List<CarWithBrandDto>>(jsonData);
+        return cars ?? [];
     }
 }

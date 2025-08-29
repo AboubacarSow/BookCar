@@ -36,7 +36,7 @@ public class CarsController:ControllerBase
         return Ok(cars);
     }
 
-    [HttpGet("with_brand")]
+    [HttpGet("withbrand")]
     public async Task<IActionResult> GetAllWithBrand()
     {
         var cars=await _getWithBrandQueryHandler.Handle();

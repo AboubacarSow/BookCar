@@ -17,4 +17,11 @@ public record ContactDto(
     string Subject,
     string Message);
 
+public record BannerDto(
+    int Id,
+    string Title,
+    string Description,
+    string VideoDescription,
+    string VideoUrl);
+
 
