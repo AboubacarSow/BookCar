@@ -7,14 +7,18 @@ public class BookCarDbContext : DbContext
     public BookCarDbContext(DbContextOptions<BookCarDbContext> options) : base(options)
     {
     }
+    public override OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseLazyLoadingProxies();
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-            modelBuilder.Entity<Reservation>()
-                        .HasOne(r => r.DropOffLocation)
-                        .WithMany(l => l.DropOffReservations)
-                        .HasForeignKey(r => r.DropOffLocationID)
-                        .OnDelete(DeleteBehavior.Restrict);
-    
+        modelBuilder.Entity<Reservation>()
+                    .HasOne(r => r.DropOffLocation)
+                    .WithMany(l => l.DropOffReservations)
+                    .HasForeignKey(r => r.DropOffLocationID)
+                    .OnDelete(DeleteBehavior.Restrict);
+
     }
     public DbSet<About> Abouts { get; set; }
     public DbSet<Author> Authors { get; set; }

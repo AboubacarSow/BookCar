@@ -41,6 +41,6 @@ internal class CarRepository : RepositoryBase<Car>, ICarRepository
 
     }
 
-    public void Update(Car car)=>Update(car);
+    public void Update(Car car)=>Edit(car);
     
 }
