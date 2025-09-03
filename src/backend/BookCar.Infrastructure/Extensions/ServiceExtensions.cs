@@ -32,6 +32,8 @@ public static class ServiceExtensions
         services.AddScoped<ISocialMediaRepository, SocialMediaRepository>();
         services.AddScoped<ITestimonialRepository, TestimonialRepository>();
         services.AddScoped<IBlogRepository, BlogRepository>();
+        services.AddScoped<IAuthorRepository, AuthorRepository>();
+        services.AddScoped<ICommentRepository, CommentRepository>();
         services.AddTransient(typeof(Lazy<>),typeof(LazyFactory<>));
         services.AddScoped<IUnitOfWork, UnitOfWork>();
     }

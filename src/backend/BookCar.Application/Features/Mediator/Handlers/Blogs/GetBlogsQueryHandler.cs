@@ -1,7 +1,13 @@
+using BookCar.Application.Dtos;
+using BookCar.Application.Features.Mediator.Queries.Blogs;
+using BookCar.Application.Features.Mediator.Results.Blogs;
+using BookCar.Application.Interfaces.Repositories;
+using MediatR;
+
 namespace BookCar.Application.Features.Mediator.Handlers.Blogs;
 
 
-public class GetBlogsQueryHandler : IQueryHandler<GetBlogsQuery, List<GetBlogsQueryResult>>
+public class GetBlogsQueryHandler : IRequestHandler<GetBlogsQuery, List<GetBlogsQueryResult>>
 {
     private readonly IUnitOfWork _unitOfWork;
     public GetBlogsQueryHandler(IUnitOfWork unitOfWork)
@@ -10,15 +16,18 @@ public class GetBlogsQueryHandler : IQueryHandler<GetBlogsQuery, List<GetBlogsQu
     }
     public async Task<List<GetBlogsQueryResult>> Handle(GetBlogsQuery request, CancellationToken cancellationToken)
     {
-        var blogs = (await _unitOfWork.BlogRepository.GetAllAsync(false))
+        var blogs = (await _unitOfWork.Blog.GetAllAsync(false))
             .Select(b => new GetBlogsQueryResult
             {
                 Id = b.Id,
                 Title = b.Title,
                 Description = b.Description,
-                ImageUrl = b.ImageUrl,
-                CreatedAt = b.CreatedAt,
-                UpdatedAt = b.UpdatedAt
+                CoverImageUrl = b.CoverImageUrl,
+                Author = new(b.Author!.Id,b.Author.Name,b.Author.ImageUrl,b.Author.Description),
+                TagClouds=b.TagClouds.Select(t=>new TagCloudDto(t.Title,t.BlogID)).ToList(),
+                Comments=b.Comments,
+                Category= new(b.CategoryID,b.Category!.Name),
+
             }).ToList();
         return blogs;
     }

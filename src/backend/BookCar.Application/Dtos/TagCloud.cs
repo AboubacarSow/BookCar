@@ -2,8 +2,5 @@
 
 namespace BookCar.Application.Dtos;
 
-public class TagCloudDto
-{
-    public string Title { get; set; }
-    public int BlogID { get; set; }
-}
+public record TagCloudDto(string Title,int BlogID);
+

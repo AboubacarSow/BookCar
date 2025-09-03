@@ -18,6 +18,7 @@ public interface IUnitOfWork
     ITestimonialRepository Testimonial{ get; }
     IBlogRepository Blog { get; }
     IAuthorRepository Author { get; }
+    ICommentRepository Comment { get; }
 
     Task SaveChangesAsync();
 }

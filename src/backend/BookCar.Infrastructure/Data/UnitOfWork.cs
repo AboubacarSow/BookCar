@@ -22,6 +22,7 @@ internal class UnitOfWork : IUnitOfWork
     private readonly Lazy<IContactInfoRepository> _contactInfoRepository;
     private readonly Lazy<IBlogRepository> _blogRepository;
     private readonly Lazy<IAuthorRepository> _authorRepository; 
+    private readonly Lazy<ICommentRepository> _commentRepository;
     public UnitOfWork(BookCarDbContext context, Lazy<IAboutRepository> aboutRepository,
        Lazy<IBannerRepository> bannerRepository, Lazy<IBrandRepository> brandRepository,
        Lazy<ICategoryRepository> categoryRepository, Lazy<IContactRepository> contactRepository,
@@ -30,7 +31,7 @@ internal class UnitOfWork : IUnitOfWork
        Lazy<IPricingRepository> priceRepository, Lazy<IServiceRepository> serviceRepository,
        Lazy<ISocialMediaRepository> socialMediaRepository, Lazy<ITestimonialRepository> testimonialRepository
         , Lazy<IContactInfoRepository> contactInfoRepository, Lazy<IBlogRepository> blogRepository, 
-       Lazy<IAuthorRepository> authorRepository)
+       Lazy<IAuthorRepository> authorRepository, Lazy<ICommentRepository> commentRepository)
     {
         _context = context;
         _aboutRepository = aboutRepository;
@@ -49,6 +50,7 @@ internal class UnitOfWork : IUnitOfWork
         _contactInfoRepository = contactInfoRepository;
         _blogRepository = blogRepository;
         _authorRepository = authorRepository;
+        _commentRepository = commentRepository;
     }
 
     public IAboutRepository About => _aboutRepository.Value;
@@ -66,9 +68,8 @@ internal class UnitOfWork : IUnitOfWork
     public ITestimonialRepository Testimonial => _testimonialRepository.Value;
     public IContactInfoRepository ContactInfo => _contactInfoRepository.Value;
     public IBlogRepository Blog => _blogRepository.Value;
-
     public IAuthorRepository Author => _authorRepository.Value;
-
+    public ICommentRepository Comment => _commentRepository.Value;
     public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
     
 }
