@@ -17,6 +17,7 @@ public interface IUnitOfWork
     ISocialMediaRepository SocialMedia { get; }
     ITestimonialRepository Testimonial{ get; }
     IBlogRepository Blog { get; }
+    IAuthorRepository Author { get; }
 
     Task SaveChangesAsync();
 }

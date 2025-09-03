@@ -5,20 +5,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookCar.Infrastructure.Data.Repositories;
 
-internal class BlogRepository : RepositoryBase<Blog>, IBlogRepository
+internal class AuthorRepository : RepositoryBase<Author>, IAuthorRepository
 {
-    public BlogRepository(BookCarDbContext context) : base(context)
+    public AuthorRepository(BookCarDbContext context) : base(context)
     {
     }
 
-    public void Create(Blog blog)=>Add(blog);
+    public void Create(Author author)=>Add(author);
     
 
-    public async Task<IEnumerable<Blog>> GetAllAsync(bool trackChanges)
+    public async Task<IEnumerable<Author>> GetAllAsync(bool trackChanges)
         =>await FindAll(trackChanges).ToListAsync();
 
-    public async Task<Blog> GetOneByIdAsync(int id, bool trackChanges)
-    =>await FindByCondition(b=>b.Id==id,trackChanges).FirstOrDefaultAsync();
+    public async Task<Author> GetOneByIdAsync(int id, bool trackChanges)
+      => await FindByCondition(b => b.Id == id, trackChanges).FirstOrDefaultAsync();
 
     public async Task RemoveByIdAsync(int id)
     {
@@ -33,6 +33,6 @@ internal class BlogRepository : RepositoryBase<Blog>, IBlogRepository
         }
     }
 
-    public void Update(Blog blog)
-   => Edit(blog);
+    public void Update(Author author)
+      => Edit(author);
 }

@@ -21,7 +21,7 @@ internal class UnitOfWork : IUnitOfWork
     private readonly Lazy<ITestimonialRepository> _testimonialRepository;
     private readonly Lazy<IContactInfoRepository> _contactInfoRepository;
     private readonly Lazy<IBlogRepository> _blogRepository;
-
+    private readonly Lazy<IAuthorRepository> _authorRepository; 
     public UnitOfWork(BookCarDbContext context, Lazy<IAboutRepository> aboutRepository,
        Lazy<IBannerRepository> bannerRepository, Lazy<IBrandRepository> brandRepository,
        Lazy<ICategoryRepository> categoryRepository, Lazy<IContactRepository> contactRepository,
@@ -29,7 +29,8 @@ internal class UnitOfWork : IUnitOfWork
        Lazy<IFooterAddressRepository> footerAddressRepository, Lazy<ILocationRepository> locationRepository,
        Lazy<IPricingRepository> priceRepository, Lazy<IServiceRepository> serviceRepository,
        Lazy<ISocialMediaRepository> socialMediaRepository, Lazy<ITestimonialRepository> testimonialRepository
-        , Lazy<IContactInfoRepository> contactInfoRepository, Lazy<IBlogRepository> blogRepository)
+        , Lazy<IContactInfoRepository> contactInfoRepository, Lazy<IBlogRepository> blogRepository, 
+       Lazy<IAuthorRepository> authorRepository)
     {
         _context = context;
         _aboutRepository = aboutRepository;
@@ -47,6 +48,7 @@ internal class UnitOfWork : IUnitOfWork
         _testimonialRepository = testimonialRepository;
         _contactInfoRepository = contactInfoRepository;
         _blogRepository = blogRepository;
+        _authorRepository = authorRepository;
     }
 
     public IAboutRepository About => _aboutRepository.Value;
@@ -64,6 +66,8 @@ internal class UnitOfWork : IUnitOfWork
     public ITestimonialRepository Testimonial => _testimonialRepository.Value;
     public IContactInfoRepository ContactInfo => _contactInfoRepository.Value;
     public IBlogRepository Blog => _blogRepository.Value;
+
+    public IAuthorRepository Author => _authorRepository.Value;
 
     public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
     
