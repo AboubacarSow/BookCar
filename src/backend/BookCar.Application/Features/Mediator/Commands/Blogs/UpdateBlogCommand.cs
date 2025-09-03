@@ -7,5 +7,5 @@ public record UpdateBlogCommand(int Id,
      int AuthorId, 
      string CoverImageUrl,
      int CategoryID,
-     string Descriptionl)
- : IRequest;
+     string Description)
+ : IRequest<int>;
