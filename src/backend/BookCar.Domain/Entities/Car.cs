@@ -2,7 +2,7 @@ namespace BookCar.Domain.Entities;
 
 public class Car : BaseEntity
 {
-    public Brand? Brand { get; set; }
+    public virtual Brand? Brand { get; set; }
     public int BrandID { get; set; }
     public string Model { get; set; }
     public string CoverImageUrl { get; set; }
@@ -12,11 +12,11 @@ public class Car : BaseEntity
     public byte Luggage { get; set; }
     public string Fuel { get; set; }
     public string BigImageUrl { get; set; }
-    public List<CarFeature> CarFeatures { get; set; }
-    public List<CarDescription> CarDescriptions { get; set; }
-    public List<CarPricing> CarPricings { get; set; }
-    public List<RentACar> RentACars { get; set; }
-    public List<RentACarProcess> RentACarProcesses { get; set; }
-    public List<Reservation> Reservations { get; set; }
-    public List<Review> Reviews { get; set; }
+    public virtual List<CarFeature> CarFeatures { get; set; }
+    public virtual List<CarDescription> CarDescriptions { get; set; }
+    public virtual List<CarPricing> CarPricings { get; set; }
+    public virtual List<RentACar> RentACars { get; set; }
+    public virtual List<RentACarProcess> RentACarProcesses { get; set; }
+    public virtual List<Reservation> Reservations { get; set; }
+    public virtual List<Review> Reviews { get; set; }
 }

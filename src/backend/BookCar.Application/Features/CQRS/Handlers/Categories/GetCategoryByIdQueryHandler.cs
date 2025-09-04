@@ -15,10 +15,7 @@ public class GetCategoryByIdQueryHandler
     public async Task<GetCategoryByIdQueryResult> Handle(GetCategoryByIdQuery request)
     {
         var category = await _unitOfWork.Category.GetOneByIdAsync(request.Id, false);
-        return new GetCategoryByIdQueryResult
-        {
-            Id = category.Id,
-            Name = category.Name,
-        };
+        return new GetCategoryByIdQueryResult(category.Id, category.Name);
+        
     }
 }

@@ -5,7 +5,7 @@ namespace BookCar.Domain.Entities;
 
 public class RentACarProcess : BaseEntity
 {
-    public Car? Car { get; set; }
+    public virtual Car? Car { get; set; }
     public int CarID { get; set; }
     public int PickUpLocation { get; set; }
     public int DropOffLocation { get; set; }
@@ -21,7 +21,7 @@ public class RentACarProcess : BaseEntity
 
     [DataType(DataType.Time)]
     public TimeSpan DropOffTime { get; set; }
-    public Customer? Customer { get; set; }
+    public virtual Customer? Customer { get; set; }
     public int CustomerID { get; set; }
     public string PickUpDescription { get; set; }
     public string DropOffDescription { get; set; }

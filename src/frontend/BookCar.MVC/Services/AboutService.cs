@@ -1,8 +1,5 @@
 ﻿using BookCar.MVC.Dtos.Abouts;
-using BookCar.MVC.Interfaces;
 using Newtonsoft.Json;
-using System.Net;
-using System.Text;
 
 namespace BookCar.MVC.Services;
 
@@ -20,83 +17,18 @@ internal class AboutService(IHttpClientFactory httpClientFactory, ILogger<AboutS
         return about!;
     }
 }
-
-internal class TestimonialService(IHttpClientFactory httpClientFactory, ILogger<TestimonialService> logger)
-: ITestimonialService
+internal class BlogService(IHttpClientFactory httpClientFactory) 
+: IBlogService
 {
     private readonly HttpClient _client = httpClientFactory.CreateClient("BookCarApi");
 
-    public async Task<List<TestimonialDto>> GetTestimonials()
+    public async Task<List<BlogDto>> GetLastThreeBlogs()
     {
-        var result = await _client.GetAsync("testimonials");
+        var result = await _client.GetAsync("blogs/lastThreeblogs");
         var jsonData = await result.Content.ReadAsStringAsync();
 
-        var testimonials = JsonConvert.DeserializeObject<List<TestimonialDto>>(jsonData);
+        var blog = JsonConvert.DeserializeObject<List<BlogDto>>(jsonData);
 
-        return testimonials ?? [];
-    }
-
-
-}
-internal class HizmetService(IHttpClientFactory httpClientFactory):IHizmetService
-{
-    private readonly HttpClient _client = httpClientFactory.CreateClient("BookCarApi");
-    
-    public async Task<List<HizmetDto>> GetHizmetler()
-    {
-        var result = await _client.GetAsync("services");
-        var jsonData = await result.Content.ReadAsStringAsync();
-
-        var hizmetler = JsonConvert.DeserializeObject<List<HizmetDto>>(jsonData);
-
-        return hizmetler ?? [];
-    }
-}
-
-internal class ContactInfoService(IHttpClientFactory httpClientFactory):IContactInfoService
-{
-    private readonly HttpClient _httpClient = httpClientFactory.CreateClient("BookCarApi");
-    public async Task<ContactInfoDto> GetContactInfo()
-    {
-        var result = await _httpClient.GetAsync("contactInfos");
-        var jsonData = await result.Content.ReadAsStringAsync();
-        var contactInfo = JsonConvert.DeserializeObject<List<ContactInfoDto>>(jsonData)?.FirstOrDefault();
-        return contactInfo!;
-    }
-}
-
-internal class ContactService(IHttpClientFactory httpClientFactory) : IContactService
-{
-    private readonly HttpClient _client = httpClientFactory.CreateClient("BookCarApi");
-    public async Task<bool> SendContactMessage(ContactDto createContactDto)
-    {
-        var jsonData = JsonConvert.SerializeObject(createContactDto);
-        var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-        await _client.PostAsync("contacts", content);
-        return true;
-    }
-}
-
-internal class BannerService(IHttpClientFactory httpClientFactory) : IBannerService
-{
-    private readonly HttpClient _client = httpClientFactory.CreateClient("BookCarApi");
-    public async Task<BannerDto> GetBanner()
-    {
-        var result = await _client.GetAsync("banners");
-        var jsonData = await result.Content.ReadAsStringAsync();
-        var banner = JsonConvert.DeserializeObject<List<BannerDto>>(jsonData)?.FirstOrDefault();
-        return banner!;
-    }
-}
-
-internal class CarService(IHttpClientFactory httpClientFactory) : ICarService
-{
-    private readonly HttpClient _client = httpClientFactory.CreateClient("BookCarApi");
-    public async Task<List<CarWithBrandDto>> GetCarsWithBrand()
-    {
-        var result = await _client.GetAsync("cars/withbrand");
-        var jsonData = await result.Content.ReadAsStringAsync();
-        var cars = JsonConvert.DeserializeObject<List<CarWithBrandDto>>(jsonData);
-        return cars ?? [];
+        return blog!;
     }
 }

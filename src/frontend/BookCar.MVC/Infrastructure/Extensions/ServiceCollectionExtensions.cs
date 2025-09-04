@@ -25,5 +25,6 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IContactService, ContactService>();
         services.AddScoped<ICarService, CarService>();
         services.AddScoped<IBannerService, BannerService>();
+        services.AddScoped<IBlogService, BlogService>();
     }
 }

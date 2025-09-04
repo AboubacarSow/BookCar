@@ -15,15 +15,8 @@ public  class RemoveAboutCommandHandler
 
     public async Task<bool> Handle(RemoveAboutCommand request)
     {
-        try
-        {
-            await _unitOfWork.About.RemoveByIdAsync(request.Id);
-            await _unitOfWork.SaveChangesAsync();
-            return true;
-        }catch (Exception ex)
-        {
-            //we will do some logging later on
-            return false;
-        }
+       await _unitOfWork.About.RemoveByIdAsync(request.Id);
+       await _unitOfWork.SaveChangesAsync();
+       return true; 
     }
 }

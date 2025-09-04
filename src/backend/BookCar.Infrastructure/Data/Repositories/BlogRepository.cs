@@ -20,6 +20,11 @@ internal class BlogRepository : RepositoryBase<Blog>, IBlogRepository
     public async Task<Blog> GetOneByIdAsync(int id, bool trackChanges)
     =>await FindByCondition(b=>b.Id==id,trackChanges).FirstOrDefaultAsync();
 
+    public Task<List<Blog>> GetThreeLastBlogsAsync(bool trackChanges)
+    {
+        return FindAll(trackChanges).OrderByDescending(b=>b.Id).Take(3).ToListAsync();
+    }
+
     public async Task RemoveByIdAsync(int id)
     {
         var model = await GetOneByIdAsync(id, false);

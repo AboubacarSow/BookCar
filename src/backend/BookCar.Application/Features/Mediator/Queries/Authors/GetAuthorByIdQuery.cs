@@ -3,5 +3,5 @@ using MediatR;
 
 namespace BookCar.Application.Features.Mediator.Queries.Authors;
 
-public record GetAuthorByIdQuery:IRequest<GetAuthorByIdQueryResult>;
+public record GetAuthorByIdQuery(int Id):IRequest<GetAuthorByIdQueryResult>;
 

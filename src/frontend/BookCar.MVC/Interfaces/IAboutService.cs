@@ -7,31 +7,7 @@ public interface IAboutService
 {
     Task<GetAboutDto> GetAbout();
 }
-
-
-public interface ITestimonialService
+public interface IBlogService
 {
-    Task<List<TestimonialDto>> GetTestimonials();
-}
-public interface IHizmetService
-{
-    Task<List<HizmetDto>> GetHizmetler();
-}
-public interface IContactInfoService
-{
-    Task<ContactInfoDto> GetContactInfo();
-}
-
-public interface IContactService
-{
-    Task<bool> SendContactMessage(ContactDto createContactDto);
-}
-public interface IBannerService
-{
-    Task<BannerDto> GetBanner();
-}
-
-public interface ICarService
-{
-    Task<List<CarWithBrandDto>> GetCarsWithBrand();
+    Task<List<BlogDto>> GetLastThreeBlogs();
 }

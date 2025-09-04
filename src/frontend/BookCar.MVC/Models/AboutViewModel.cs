@@ -24,10 +24,20 @@ public class IndexViewModel
     public StatisticViewModel Statistics { get; set; } = new();
 }
 
-public class AboutInfo{
+public class AboutInfo
+{
     public int Id { get; set; }
     public string Title { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
     public string ImageUrl { get; set; } = string.Empty;
+}
+
+public class BlogFeatureViewModel
+{
+    public int Id { get; set; }
+    public string Title { get; set; } = string.Empty;
+    public string CoverImageUrl { get; set; } = string.Empty;
+    public DateTime CreatedDate { get; set; }
+    public int CommentCount { get; set; }
 }
 

@@ -34,3 +34,12 @@ public record GetBlogByIdQueryResult
     public List<TagCloudDto> TagClouds { get; set; }
     public List<GetCommentQueryResult> Comments { get; set; }
 }
+public record GetThreeLastBlogsQueryResult(int Id,
+    string Title,
+    GetAuthorQueryResult Author,
+    string CoverImageUrl,
+    DateTime CreatedDate,
+    GetCategoryQueryResult Category,
+    string Description,
+    List<TagCloudDto> TagClouds,
+    List<GetCommentQueryResult> Comments);

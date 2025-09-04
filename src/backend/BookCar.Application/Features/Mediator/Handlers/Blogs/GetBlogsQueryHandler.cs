@@ -32,3 +32,22 @@ public class GetBlogsQueryHandler : IRequestHandler<GetBlogsQuery, List<GetBlogs
         return blogs;
     }
 }
+public class GetThreeLasteBlogsQueryHandler(IUnitOfWork _unitOfWork) : IRequestHandler<GetThreeLastBlogsQuery, List<GetThreeLastBlogsQueryResult>>
+{
+    public async Task<List<GetThreeLastBlogsQueryResult>> Handle(GetThreeLastBlogsQuery request, CancellationToken cancellationToken)
+    {
+        var blogs = (await _unitOfWork.Blog.GetThreeLastBlogsAsync(false))
+            .Select(b => new GetThreeLastBlogsQueryResult(
+                b.Id,
+                b.Title,
+                new(b.Author!.Id,b.Author.Name,b.Author.ImageUrl,b.Author.Description),
+                b.CoverImageUrl,
+                b.CreatedDate,
+                new(b.Category!.Id,b.Category.Name),
+                b.Description,
+                b.TagClouds.Select(t => new TagCloudDto(t.Title, t.BlogID)).ToList(),
+                [.. b.Comments.Select(c => new GetCommentQueryResult(c.Id, c.Name, c.Description, c.CreatedDate, c.Email, c.Blog, c.BlogID))]
+                )).ToList();
+        return blogs;
+    }
+}

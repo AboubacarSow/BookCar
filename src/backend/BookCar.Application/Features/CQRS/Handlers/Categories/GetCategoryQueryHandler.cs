@@ -13,10 +13,7 @@ public class GetCategoryQueryHandler
     public async Task<List<GetCategoryQueryResult>> Handle()
     {
         var categories=await _unitOfWork.Category.GetAllAsync(false);
-        return [.. categories.Select(c=> new GetCategoryQueryResult {
-            Id = c.Id,  
-            Name = c.Name,
-        })];
+        return [.. categories.Select(c=> new GetCategoryQueryResult(c.Id,c.Name))];
 
     }
 }

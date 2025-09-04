@@ -7,6 +7,8 @@ public interface IBlogRepository
     Task<IEnumerable<Blog>> GetAllAsync(bool trackChanges);
   //  Task<IEnumerable<Blog>> GetAllWithAuthorCategoryTagCloudsCommentsAsync(bool trackChanges);
     Task<Blog> GetOneByIdAsync(int id, bool trackChanges);
+
+    Task<List<Blog>> GetThreeLastBlogsAsync(bool trackChanges);
     void Create(Blog blog);
     void Update(Blog blog);
     Task RemoveByIdAsync(int id);

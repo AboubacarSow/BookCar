@@ -7,7 +7,7 @@ public class BookCarDbContext : DbContext
     public BookCarDbContext(DbContextOptions<BookCarDbContext> options) : base(options)
     {
     }
-    public override OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseLazyLoadingProxies();
     }
